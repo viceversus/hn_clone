@@ -1,0 +1,9 @@
+<h1>HN Clone</h1>
+
+<%= render 'shared/new_link' %>
+
+<ul>
+  <% @links.each do |link| %>
+  <li><%= link_to "#{link.url}", "#{link.url}" %></li>
+  <% end %>
+</ul>
