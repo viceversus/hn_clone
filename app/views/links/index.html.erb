@@ -2,6 +2,8 @@
 
 <ul>
   <% @links.each do |link| %>
-  <li><%= link_to "#{link.url}", "#{link.url}" %></li>
+  <li>
+  <%= link.user.email unless link.user.nil? %>
+  <%= link_to "#{link.url}", "#{link.url}" %></li>
   <% end %>
 </ul>
