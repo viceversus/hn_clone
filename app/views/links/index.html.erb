@@ -3,7 +3,11 @@
 <ul>
   <% @links.each do |link| %>
   <li>
-  <%= link.user.email unless link.user.nil? %>
-  <%= link_to "#{link.url}", "#{link.url}" %></li>
+  <%= link.votes.count %> -
+  <%= link.user.email unless link.user.nil? %> -
+  <%= link_to "#{link.url}", "#{link.url}" %> -
+  Posted <%= time_ago_in_words(link.created_at) %> ago -
+  <%= link_to "Upvote!",  votes_path(:link_id => link.id), :method => :post %>
+  </li>
   <% end %>
 </ul>

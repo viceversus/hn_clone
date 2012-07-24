@@ -1,8 +1,11 @@
 HnClone::Application.routes.draw do
 
+  get "votes/new"
+
   devise_for :users
 
   resources :links
+  resources :votes, :only => [:new, :create, :destroy]
   root :to => 'links#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.

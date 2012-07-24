@@ -3,8 +3,7 @@ class LinksController < ApplicationController
   before_filter :correct_user, only: [:edit, :update]
 
   def index
-    @links = Link.all
-    @link = Link.new
+    @links = Link.sort_by_votes
   end
 
   def new
