@@ -9,7 +9,5 @@ class VotesController < ApplicationController
       flash[:error] = "Cannot vote on your own or vote twice!"
       redirect_to root_path
     end
-    # current_user.votes.create!(:link => link)
-    # redirect_to root_path
   end
 end

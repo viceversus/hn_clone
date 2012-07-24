@@ -35,6 +35,13 @@ class LinksController < ApplicationController
     end
   end
 
+  def show
+    @link = Link.find(params[:id])
+    @commentable = @link
+    @comments = @commentable.comments
+    @comment = Comment.new
+  end
+
   private
     def correct_user
       redirect_to(root_path) unless Link.find(params[:id]).user == current_user

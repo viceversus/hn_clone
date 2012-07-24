@@ -1,0 +1,23 @@
+<h1>HN Clone</h1>
+
+<h2><%= link_to "#{@link.url}", "#{@link.url}" %></h2>
+
+<ul>
+  <li>
+  <%= @link.votes.count %> -
+  <%= @link.user.email unless @link.user.nil? %> -
+  Posted <%= time_ago_in_words(@link.created_at) %> ago -
+  <%= link_to "Upvote!",  votes_path(:link_id => @link.id), :method => :post %>
+  </li>
+</ul>
+
+<%= form_for [@commentable, @comment] do |f| %>
+  <%= f.text_area :content, :placeholder => "Enter comment...", :size => "40" %>
+  <%= f.submit "Submit" %>
+<% end %>
+
+<% if @comments.any? %>
+  <% @comments.each do |comment| %>
+    <%= comment.content %> - <%= link_to "Reply", comment_path %></br>
+  <% end %>
+<% end %>
