@@ -11,13 +11,7 @@
   </li>
 </ul>
 
-<%= form_for [@commentable, @comment] do |f| %>
-  <%= f.text_area :content, :placeholder => "Enter comment...", :size => "40" %>
-  <%= f.submit "Submit" %>
-<% end %>
+<%= render '/shared/comments_form' %>
 
-<% if @comments.any? %>
-  <% @comments.each do |comment| %>
-    <%= comment.content %> - <%= link_to "Reply", comment_path %></br>
-  <% end %>
-<% end %>
+<%= render '/shared/comment_tree' %>
+

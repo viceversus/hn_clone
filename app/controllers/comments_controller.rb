@@ -18,6 +18,13 @@ class CommentsController < ApplicationController
     end
   end
 
+  def show
+    @parent_comment = Comment.find(params[:id])
+    @commentable = @parent_comment
+    @comments = @commentable.comments
+    @comment = Comment.new
+  end
+
   private
 
   def load_commentable

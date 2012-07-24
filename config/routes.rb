@@ -8,7 +8,7 @@ HnClone::Application.routes.draw do
   resources :votes, :only => [:new, :create, :destroy]
 
   resources :comments do
-    resources :comments
+    resources :comments, :only => [:create]
   end
 
   root :to => 'links#index'

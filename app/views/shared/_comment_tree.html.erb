@@ -1,0 +1,5 @@
+<% if @comments.any? %>
+  <% @comments.each do |comment| %>
+    <%= render 'shared/comment_recursion', :comment => comment %>
+  <% end %>
+<% end %>
