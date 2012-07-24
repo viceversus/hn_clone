@@ -1,12 +1,12 @@
 class Vote < ActiveRecord::Base
-  attr_accessible           :link_id, :user_id, :link
-  validates_uniqueness_of   :user_id, :scope => :link_id
-  belongs_to                :link
+  attr_accessible           :voteable_id, :user_id, :link, :value
+  validates_uniqueness_of   :user_id,     :scope => [:voteable_type, :voteable_id]
+  belongs_to                :voteable, polymorphic: true
   before_create             :check_if_author
 
   private
 
   def check_if_author
-    self.link.user_id != self.user_id
+    self.voteable.user_id != self.user_id
   end
 end

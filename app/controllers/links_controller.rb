@@ -40,6 +40,7 @@ class LinksController < ApplicationController
     @commentable = @link
     @comments = @commentable.comments
     @comment = Comment.new
+    @voteable = @link
   end
 
   private
