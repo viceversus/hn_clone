@@ -1,6 +1,6 @@
 class LinksController < ApplicationController
-  before_filter :authenticate_user!, except: [:index, :show]
-  before_filter :correct_user, only: [:edit, :update]
+  before_filter :authenticate_user!,  except: [:index, :show]
+  before_filter :correct_user,        only: [:edit, :update]
 
   def index
     @links = Link.sort_by_votes

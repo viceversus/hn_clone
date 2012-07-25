@@ -12,14 +12,6 @@ class VotesController < ApplicationController
     end
   end
 
-  def index
-    @votes = @voteable.votes
-  end
-
-  def new
-    @vote = @voteable.votes.new
-  end
-
   private
     def load_voteable
       resource, id = request.path.split('/')[1,2]

@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.6'
+gem 'quiet_assets', :group => :development
 
 group :development, :test do
   gem 'sqlite3', '1.3.6'
