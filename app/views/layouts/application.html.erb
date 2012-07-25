@@ -7,8 +7,6 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= render 'shared/error_messages' %>
-
 <%= link_to 'Submit a New Link', new_link_path %>
 
 <% if user_signed_in? %>
@@ -20,6 +18,8 @@
   <%= link_to 'Sign_up', new_user_registration_path %>
   <%= link_to 'Login', new_user_session_path %>
 <% end %>
+
+<%= render 'shared/error_messages' %>
 
 <%= yield %>
 

@@ -1,4 +1,13 @@
 <%= form_for(@link) do |f| %>
   <%= f.text_field :url, :placeholder => "Enter link..." %>
+
+  <% if current_user && current_user.admin %>
+    <p>
+    <%= f.label :flagged_true %>
+    <%= f.radio_button :flagged, true %>
+    <%= f.label :flagged_false %>
+    <%= f.radio_button :flagged, false %>
+    </p>
+  <% end %>
   <%= f.submit "Submit" %>
 <% end %>

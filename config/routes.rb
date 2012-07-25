@@ -1,5 +1,8 @@
 HnClone::Application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { :sessions => 'sessions' }
+  scope "/hn" do
+    resources :users
+  end
 
   resources :links do
     resources :comments

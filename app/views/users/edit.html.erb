@@ -1,0 +1,15 @@
+<h1>Edit</h1>
+
+<%= form_for(@user) do |f|%>
+  <%= f.label         :admin_true %>
+  <%= f.radio_button  :admin, true %>
+  <%= f.label         :admin_false %>
+  <%= f.radio_button  :admin, false %><br>
+
+  <%= f.label         :banned_true %>
+  <%= f.radio_button  :banned, true %>
+  <%= f.label         :banned_false %>
+  <%= f.radio_button  :banned, false %><br>
+
+  <%= f.submit "Submit" %>
+<% end %>

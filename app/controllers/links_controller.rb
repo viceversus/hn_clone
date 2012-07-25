@@ -1,6 +1,7 @@
 class LinksController < ApplicationController
   before_filter :authenticate_user!,  except: [:index, :show]
-  before_filter :correct_user,        only: [:edit, :update]
+  before_filter :authorized_user,     only: [:edit, :update]
+  before_filter :within_15_mins?,     only: :update
 
   def index
     @links = Link.sort_by_votes
@@ -43,7 +44,15 @@ class LinksController < ApplicationController
   end
 
   private
-    def correct_user
-      redirect_to(root_path) unless Link.find(params[:id]).user == current_user
+    def authorized_user
+      redirect_to(root_path) unless Link.find(params[:id]).user == current_user || current_user.admin
+    end
+
+    def within_15_mins?
+      @link = Link.find(params[:id])
+      if !current_user.admin && (Time.now - @link.created_at) > 900
+        flash.now[:error] = "You can only edit a link for 15 minutes after posting"
+        render :edit
+      end
     end
 end
