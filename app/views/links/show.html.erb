@@ -4,7 +4,7 @@
 
 <ul>
   <li>
-  <%= count_votes(@voteable) unless count_votes(@voteable).nil? %> -
+  <%= count_votes(@link) unless count_votes(@link).nil? %> -
   <%= @link.user.email unless @link.user.nil? %> -
   Posted <%= time_ago_in_words(@link.created_at) %> ago -
   <%= link_to 'Upvote!', link_votes_path(@link, :value => 1), :method => :post %> ||
