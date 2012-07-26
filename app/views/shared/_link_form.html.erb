@@ -1,5 +1,6 @@
 <%= form_for(@link) do |f| %>
-  <%= f.text_field :url, :placeholder => "Enter link..." %>
+  <%= f.text_field :title, :placeholder => "Enter title..." %><br>
+  <%= f.text_field :url, :placeholder => "Enter link..." %><br>
 
   <% if current_user && current_user.admin %>
     <p>

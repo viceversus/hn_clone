@@ -26,6 +26,15 @@ class CommentsController < ApplicationController
     @comment = Comment.new
   end
 
+  def destroy
+    @comment = Comment.find(params[:id])
+    if @comment.destroy
+      redirect_to root_path
+    else
+      render 'show'
+    end
+  end
+
   private
 
   def load_commentable

@@ -9,8 +9,6 @@ HnClone::Application.routes.draw do
     resources :votes
   end
 
-  resources :votes, :only => [:new, :create, :destroy]
-
   resources :comments do
     resources :comments, :only => [:create]
     resources :votes

@@ -1,10 +1,11 @@
 class Link < ActiveRecord::Base
-  attr_accessible :url, :flagged
+  attr_accessible :url, :flagged, :title
 
   validates     :url,       :presence   => true,
                             :uniqueness => true
   validates     :user_id,   :presence   => true
-
+  validates     :title,     :presence   => true,
+                            :uniqueness => true
 
   belongs_to    :user
   has_many      :votes,     as: :voteable,    :dependent => :destroy
