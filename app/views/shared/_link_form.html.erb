@@ -3,12 +3,8 @@
   <%= f.text_field :url, :placeholder => "Enter link..." %><br>
 
   <% if current_user && current_user.admin %>
-    <p>
-    <%= f.label :flagged_true %>
-    <%= f.radio_button :flagged, true %>
-    <%= f.label :flagged_false %>
-    <%= f.radio_button :flagged, false %>
-    </p>
+    <div class='radio-button'><%= f.label :flagged_true %> <%= f.radio_button :flagged, true %></div>
+    <div class='radio-button'><%= f.label :flagged_false %> <%= f.radio_button :flagged, false %></div>
   <% end %>
   <%= f.submit "Submit" %>
 <% end %>

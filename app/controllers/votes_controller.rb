@@ -4,7 +4,7 @@ class VotesController < ApplicationController
   def create
     @vote = @voteable.votes.new(:value => params[:value], :user_id => current_user.id)
     if @vote.save
-      flash[:messages] = "Your vote has been counted!"
+      flash[:success] = "Your vote has been counted!"
       redirect_to @voteable
     else
       flash[:error] = "Cannot vote on your own or vote twice!"

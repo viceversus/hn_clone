@@ -9,9 +9,11 @@ class CommentsController < ApplicationController
     @comment = @commentable.comments.new(params[:comment])
     @comment.user_id = current_user.id if current_user
     if @comment.save
-      redirect_to @commentable, messages: "Comment Created."
+      flash[:success] = "Comment created."
+      redirect_to @commentable
     else
-      redirect_to new_user_session_path, alert: "Please sign in"
+      flash[:alert] = "Please sign in."
+      redirect_to new_user_session_path
     end
   end
 

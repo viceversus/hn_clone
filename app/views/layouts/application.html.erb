@@ -6,21 +6,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
-        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </a>
-        <a class="brand" href="#">HNClone</a>
-        <div class="nav-collapse">
-          <ul class="nav">
-            <li><%= link_to 'Submit a New Link', new_link_path %><li>
-      </div>
-    </div>
-  </div>
+  <%= render :partial => 'layouts/header' %>
 
   <div class="container">
     <div class="row">
@@ -30,7 +16,7 @@
       </div>
       <div class="span3">
         <% if user_signed_in? %>
-          Logged in as <strong><%= current_user.email %></strong>
+          Logged in as <strong><%= current_user.email %></strong><br>
           <%= link_to 'Edit profile', edit_user_registration_path %><br>
           Karma Score: <%= current_user.karma %><br>
           <%= link_to 'Logout', destroy_user_session_path, method: :delete %>

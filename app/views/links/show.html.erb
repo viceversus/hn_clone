@@ -1,6 +1,5 @@
-<h1><%= link_to full_title(@link), "#{ @link.url }" %></h1>
 <%= render :partial => 'shared/link', :locals => { :link => @link } %>
-
+<br>
 <%= render '/shared/comments_form' %>
 
 <%= render '/shared/comment_tree' %>

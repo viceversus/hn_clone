@@ -17,7 +17,7 @@ class LinksController < ApplicationController
 
   def create
     if current_user.links.create(params[:link])
-      flash[:messages] = "Your link has been saved"
+      flash[:success] = "Your link has been saved"
       redirect_to root_path
     else
       flash.now[:error] = "Please enter a valid link"
@@ -31,7 +31,7 @@ class LinksController < ApplicationController
   def update
     within_15_mins?
     if @link.update_attributes(params[:link])
-      flash[:messages] = "Your link has been saved"
+      flash[:success] = "Your link has been saved"
       redirect_to root_path
     else
       flash.now[:error] = "You can only edit a link for 15 minutes after posting"
@@ -47,7 +47,7 @@ class LinksController < ApplicationController
 
   def destroy
     if find_link.destroy
-      flash[:messages] = "Your link has been deleted!"
+      flash[:success] = "Your link has been deleted!"
       redirect_to root_path
     else
       flash.now[:error] = "There was an error in deleting your link!"
