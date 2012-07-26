@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
     aggregate_link_score + aggregate_comment_score
   end
 
+  def super_user?
+    karma > 100
+  end
+
   private
     def aggregate_link_score
       score = 0

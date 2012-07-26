@@ -1,21 +1,17 @@
 class CommentsController < ApplicationController
   before_filter :load_commentable
 
-  def index
-    @comments = @commentable.comments
-  end
-
   def new
     @comment = @commentable.comments.new
   end
 
   def create
     @comment = @commentable.comments.new(params[:comment])
-    @comment.user_id = current_user.id
+    @comment.user_id = current_user.id if current_user
     if @comment.save
       redirect_to @commentable, messages: "Comment Created."
     else
-      render :new
+      redirect_to new_user_session_path, alert: "Please sign in"
     end
   end
 

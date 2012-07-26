@@ -1,0 +1,15 @@
+<li>
+<%= count_votes(link) %> -
+<%= link.user.email %> -
+<%= link_to full_title(link), "#{link.url}" %> -
+Posted <%= time_ago_in_words(link.created_at) %> ago -
+<%= link_to comment_count(link), link_path(link) %> ||
+<%= link_to 'Upvote!', link_votes_path(link, :value => 1), :method => :post %>
+<% if current_user && (current_user.super_user? || current_user.admin?) %>
+  || <%= link_to 'Downvote!', link_votes_path(link, :value => -1), :method => :post %>
+<% end %>
+<% if admin? || link.user == current_user %>
+  || <%= link_to 'Edit', edit_link_path(link) %>
+  || <%= link_to 'Delete', link_path(link), :method => :delete %>
+<% end %>
+</li>

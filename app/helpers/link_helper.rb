@@ -4,4 +4,16 @@ module LinkHelper
     voteable.votes.each { |vote| voteable_value += vote.value }
     voteable_value
   end
+
+  def admin?
+     current_user && current_user.admin
+  end
+
+  def full_title(link)
+    "#{link.title} (#{link.url})"
+  end
+
+  def comment_count(link)
+    "#{link.comments.length} #{"comment".pluralize(link.comments.length)}"
+  end
 end

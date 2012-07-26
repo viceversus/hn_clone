@@ -1,16 +1,5 @@
-<h1>HN Clone</h1>
-
-<h2><%= link_to "#{@link.title} (#{@link.url})", "#{@link.url}" %></h2>
-
-<ul>
-  <li>
-  <%= count_votes(@link) unless count_votes(@link).nil? %> -
-  <%= @link.user.email unless @link.user.nil? %> -
-  Posted <%= time_ago_in_words(@link.created_at) %> ago -
-  <%= link_to 'Upvote!', link_votes_path(@link, :value => 1), :method => :post %> ||
-  <%= link_to 'Downvote!', link_votes_path(@link, :value => -1), :method => :post %>
-  </li>
-</ul>
+<h1><%= link_to full_title(@link), "#{ @link.url }" %></h1>
+<%= render :partial => 'shared/link', :locals => { :link => @link } %>
 
 <%= render '/shared/comments_form' %>
 

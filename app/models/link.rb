@@ -14,7 +14,11 @@ class Link < ActiveRecord::Base
   before_save   :clean
 
   def self.sort_by_votes
-    Link.all.sort {|a, b| b.votes.count <=> a.votes.count}
+    self.all.sort {|a, b| b.votes.count <=> a.votes.count}
+  end
+
+  def self.without_flagged
+    self.where("flagged = ?", "f")
   end
 
   private

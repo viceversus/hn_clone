@@ -4,7 +4,11 @@ class LinksController < ApplicationController
   before_filter :find_link,           except: [:index, :new, :create]
 
   def index
-    @links = Link.sort_by_votes
+    if current_user && current_user.admin
+      @links = Link.sort_by_votes
+    else
+      @links = Link.without_flagged.sort_by_votes
+    end
   end
 
   def new
