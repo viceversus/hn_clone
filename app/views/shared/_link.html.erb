@@ -1,17 +1,20 @@
-<li class="homepage-fulltitle">
-<%= link_to full_title(link), "#{link.url}" %> -
-Posted <%= time_ago_in_words(link.created_at) %> ago
-  <li class="small">
-  <%= count_votes(link) %> -
-  <%= link.user.email %> -
-  <%= link_to comment_count(link), link_path(link) %> ||
-  <%= link_to 'Upvote!', link_votes_path(link, :value => 1), :method => :post %>
+<p>
+<li class="link-fulltitle">
+  <%= link_to image_tag("upvote.png", :size => "30x30", :class => "upvote"), link_votes_path(link, :value => 1), :method => :post %>
+  <%= link_to full_title(link), "#{link.url}" %> -
+  Posted <%= time_ago_in_words(link.created_at) %> ago
+</li>
+<li class="small">
   <% if current_user && (current_user.super_user? || current_user.admin?) %>
-    || <%= link_to 'Downvote!', link_votes_path(link, :value => -1), :method => :post %>
+    <%= link_to image_tag("downvote.png", :size => "30x30", :class => "downvote"), link_votes_path(link, :value => -1), :method => :post %>
   <% end %>
+  <span class="point_count", link_id=<%="#{ link.id }"%>><%= "#{count_votes(link)}" %></span> <span class="points_text"><%= "#{"point".pluralize(count_votes(link))}" %></span> -
+  <%= link.user.email %> -
+  <%= link_to comment_count(link), link_path(link) %>
   <% if admin? || link.user == current_user %>
     || <%= link_to 'Edit', edit_link_path(link) %>
     || <%= link_to 'Delete', link_path(link), :method => :delete %>
   <% end %>
 </li>
-</li>
+</p>
+</br>

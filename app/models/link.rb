@@ -13,12 +13,22 @@ class Link < ActiveRecord::Base
 
   before_save   :clean
 
-  def self.sort_by_votes
-    self.all.sort {|a, b| b.votes.count <=> a.votes.count}
-  end
-
   def self.without_flagged
     self.where("flagged = ?", "f")
+  end
+
+  def self.hn_sort
+    Link.all.sort {|a, b| b.hn_score <=> a.hn_score }
+  end
+
+  def hn_score
+   self.vote_sum / ((((Time.now - self.created_at)/60).to_f)**(1.8))
+  end
+
+  def vote_sum
+    count = 0
+    self.votes.each { |vote| count += vote.value }
+    count
   end
 
   private

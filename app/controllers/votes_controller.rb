@@ -6,6 +6,7 @@ class VotesController < ApplicationController
     if @vote.save
       flash[:success] = "Your vote has been counted!"
       redirect_to @voteable
+      # render "up_vote.js.erb"
     else
       flash[:error] = "Cannot vote on your own or vote twice!"
       redirect_to @voteable

@@ -14,6 +14,7 @@ module LinkHelper
   end
 
   def comment_count(link)
-    "#{link.comments.length} #{"comment".pluralize(link.comments.length)}"
+    count = link.comments.length
+    "#{count} #{'comment'.pluralize(count)}"
   end
 end

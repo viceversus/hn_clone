@@ -5,9 +5,9 @@ class LinksController < ApplicationController
 
   def index
     if current_user && current_user.admin
-      @links = Link.sort_by_votes
+      @links = Link.hn_sort
     else
-      @links = Link.without_flagged.sort_by_votes
+      @links = Link.without_flagged.hn_sort
     end
   end
 
