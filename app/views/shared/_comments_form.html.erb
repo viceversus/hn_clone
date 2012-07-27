@@ -1,5 +1,5 @@
 <div class="comment_form">
-  <%= form_for [@commentable, @comment] do |f| %>
+  <%= form_for [@commentable, @comment], :remote => true do |f| %>
     <%= f.text_area :content, :placeholder => "Enter comment...", :size => "40" %>
     <%= f.submit "Comment", :class => "btn" %>
   <% end %>

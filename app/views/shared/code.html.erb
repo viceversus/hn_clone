@@ -1,3 +1,9 @@
-$(".comment[comment_id='2']").append('<ul><li><div class="comment" comment_id="2"><div class="comment-body">wooo</div></li></ul>')
+$('.comment[comment_id="<%= @comment.commentable_id %>"]').append('<ul><li><div class="comment" comment_id="<%= @comment.id %>"><div class="comment-body"><%= @comment.content %></div></li></ul>')
 
 $('.full-listing[link_id="<%= @vote.voteable_id %>"]').effect("highlight", {}, 3000);
+
+<% if @comment.commentable_type == "Comment" %>
+    $('.comment[comment_id="<%= @comment.commentable_id %>"]').append('<ul><li><div class="comment" comment_id="<%= @comment.id %>"><div class="comment-body"><%= @comment.content %></div></li></ul>')
+<% else %>
+    $('.span9').appendChild('<div class="comment" comment_id="<%= @comment.id %>"><div class="comment-body"><%= @comment.content %></div>')
+<% end %>
