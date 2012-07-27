@@ -3,12 +3,12 @@
     <%= comment.content %>
   </div>
   <div class='comment-details'>
-	<span class="point_count", link_id=<%="#{ comment.id }"%>><%= "#{count_votes(comment)}" %></span> <span class="points_text"><%= "#{"point".pluralize(count_votes(comment))}" %></span> -
+  <span class="point_count", link_id=<%="#{ comment.id }"%>><%= "#{count_votes(comment)}" %></span> <span class="points_text"><%= "#{"point".pluralize(count_votes(comment))}" %></span> -
     <%= link_to "Reply", comment_path(comment) %> -
-    <%= link_to image_tag("upvote.png", :size => "30x30", :class => "upvote"), comment_votes_path(comment, :value => 1), :method => :post %>
-	<% if current_user && (current_user.super_user? || current_user.admin?) %>
-    	<%= link_to image_tag("downvote.png", :size => "30x30", :class => "downvote"), comment_votes_path(comment, :value => -1), :method => :post %>
-  	<% end %>
+    <%= link_to image_tag("upvote.png", :size => "30x30", :class => "upvote"), comment_votes_path(comment, :value => 1), :method => :post, remote: true %>
+  <% if current_user && (current_user.super_user? || current_user.admin?) %>
+      <%= link_to image_tag("downvote.png", :size => "30x30", :class => "downvote"), comment_votes_path(comment, :value => -1), :method => :post, remote: true %>
+    <% end %>
     <% if comment.user == current_user %>
       || <%= link_to 'Delete!', comment_path(comment), :method => :delete %>
     <% end %>

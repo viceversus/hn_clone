@@ -1,0 +1,16 @@
+<% if @vote.id %>
+    $('.point_count[link_id="<%= @vote.voteable_id %>"]').html(parseInt($('.point_count[link_id="<%= @vote.voteable_id %>"]').html())+parseInt("<%= @vote.value %>"));
+    var flashSuccess = "<%=flash.now[:success]%>";
+
+    if (flashSuccess){
+        $(".flashSuccess").fadeIn(1000).html(flashSuccess).addClass('alert').addClass('alert-success').fadeOut(8000);
+        $('html, body').animate({ scrollTop: 0 }, 0);
+    }
+<% else %>
+    var flashError = "<%=flash.now[:error]%>";
+
+    if (flashError){
+        $(".flashError").fadeIn(1000).html(flashError).addClass('alert').addClass('alert-error').fadeOut(8000);
+        $('html, body').animate({ scrollTop: 0 }, 0);
+    }
+<% end %>

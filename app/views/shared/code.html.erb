@@ -1,3 +1,3 @@
 $(".comment[comment_id='2']").append('<ul><li><div class="comment" comment_id="2"><div class="comment-body">wooo</div></li></ul>')
 
-$(".point_count[link_id=7]").html(parseInt($(".point_count[link_id=7]").html())+1)
+$('.full-listing[link_id="<%= @vote.voteable_id %>"]').effect("highlight", {}, 3000);

@@ -4,12 +4,17 @@ class VotesController < ApplicationController
   def create
     @vote = @voteable.votes.new(:value => params[:value], :user_id => current_user.id)
     if @vote.save
-      flash[:success] = "Your vote has been counted!"
-      redirect_to @voteable
-      # render "up_vote.js.erb"
+      flash.now[:success] = "Your vote has been counted!"
+      respond_to do |format|
+        format.html { redirect_to @voteable; flash[:success] = "Your vote has been counted!" }
+        format.js
+      end
     else
-      flash[:error] = "Cannot vote on your own or vote twice!"
-      redirect_to @voteable
+      flash.now[:error] = "Cannot vote on your own or vote twice!"
+      respond_to do |format|
+        format.html { redirect_to @voteable }
+        format.js
+      end
     end
   end
 
